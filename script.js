@@ -24,13 +24,19 @@ function calculate() {
   let results = [];
 
   if (mode === "wake") {
-    // calcular a qué hora acostarse (restando ciclos de 90 min)
+    // Calcular a qué hora acostarse (restando ciclos de 90 min)
     for (let i = 1; i <= 6; i++) {
       minutes -= 90;
-      if (minutes < 0) {
+
+      while (minutes < 0) {
         minutes += 60;
         hours -= 1;
       }
+      while (minutes >= 60) {
+        minutes -= 60;
+        hours += 1;
+      }
+
       if (hours < 0) hours += 24;
 
       results.push(formatTime(hours, minutes));
@@ -38,13 +44,19 @@ function calculate() {
 
     showResults("Debes acostarte a alguna de estas horas:", results.reverse());
   } else {
-    // calcular a qué hora despertarse (sumando ciclos de 90 min)
+    // Calcular a qué hora despertarse (sumando ciclos de 90 min)
     for (let i = 1; i <= 6; i++) {
       minutes += 90;
-      if (minutes >= 60) {
-        hours += Math.floor(minutes / 60);
-        minutes = minutes % 60;
+
+      while (minutes >= 60) {
+        minutes -= 60;
+        hours += 1;
       }
+      while (minutes < 0) {
+        minutes += 60;
+        hours -= 1;
+      }
+
       if (hours >= 24) hours -= 24;
 
       results.push(formatTime(hours, minutes));
@@ -62,3 +74,4 @@ function showResults(message, times) {
   document.getElementById("results").innerHTML = 
     `<b>${message}</b><br>` + times.join("<br>");
 }
+
