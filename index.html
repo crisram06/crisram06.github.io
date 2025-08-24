@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Sueño Reparador</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <h1>🛌 Calculadora de Sueño</h1>
+    <p>Descubre las mejores horas para dormir o despertar y tener un sueño reparador.</p>
+
+    <div class="options">
+      <button onclick="setMode('wake')">Quiero despertarme a...</button>
+      <button onclick="setMode('sleep')">Quiero acostarme a...</button>
+    </div>
+
+    <div class="input-area" id="input-area">
+      <p id="question">Selecciona una opción arriba 👆</p>
+      <input type="time" id="timeInput" style="display:none;">
+      <button id="calcBtn" onclick="calculate()" style="display:none;">Calcular</button>
+    </div>
+
+    <div class="result" id="results"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
